@@ -6,6 +6,7 @@ body {
 }
 
 .text {
+  display: inline-block;
   color: currentColor;
 
   &--bold {
@@ -25,21 +26,17 @@ body {
   &--lg {
     font-size: 2.4rem;
     font-weight: var(--fw-bold);
-    line-height: 125%;
+    line-height: 3.2rem;
   }
 
   &--md {
     font-size: 1.6rem;
     font-weight: var(--fw-semibold);
-  }
-
-  &--lg,
-  &--md {
-    line-height: 150%;
+    line-height: 2.1rem;
   }
 
   &--sm {
     font-size: 1.4rem;
-    line-height: 150%;
+    line-height: 1.9rem;
   }
 }

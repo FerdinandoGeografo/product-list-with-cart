@@ -13,19 +13,28 @@ export class GlobalStoreService {
 
   products = computed(() => this.#store().products);
   cart = computed(() => this.#store().cart);
-  total = computed(() =>
-    this.cart().reduce(
-      (acc, item) => (acc += item.product.price * item.quantity),
-      0
-    )
-  );
 
   constructor() {
-    this.#http
-      .get<Product[]>('data/data.json')
-      .subscribe((products) =>
-        this.#store.update((state) => ({ ...state, products }))
-      );
+    this.#http.get<Product[]>('data/data.json').subscribe((products) =>
+      this.#store.update((state) => ({
+        ...state,
+        products,
+        cart: [
+          {
+            product: { ...products[3] },
+            quantity: 1,
+          },
+          {
+            product: { ...products[1] },
+            quantity: 4,
+          },
+          {
+            product: { ...products[8] },
+            quantity: 2,
+          },
+        ],
+      }))
+    );
   }
 }
 
