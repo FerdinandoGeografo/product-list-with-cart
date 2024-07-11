@@ -1,17 +1,42 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { ProductsListComponent } from './ui/products-list.component';
+import { CartComponent } from './ui/cart.component';
+import { GlobalStoreService } from './global-store.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [ProductsListComponent, CartComponent],
   template: `
-    <h1>Welcome to {{title}}!</h1>
-
-    <router-outlet />
+    <main class="main">
+      <app-products-list [products]="store.products()" />
+      <app-cart [cart]="store.cart()" />
+    </main>
   `,
-  styles: [],
+  styles: `
+    :host {
+      display: block;
+      min-height: 100vh;
+      background: var(--rose-50);
+    }
+
+    .main {
+      padding-block: var(--spacing-1100);
+      display: grid;
+      place-content: center;
+      grid-template-columns: repeat(12, 7.2rem);
+      column-gap: 3.2rem;
+
+      app-products-list {
+        grid-column: 1 / span 8;
+      }
+
+      app-cart {
+        grid-column: 9 / -1;
+      }
+    }
+  `,
 })
 export class AppComponent {
-  title = 'product-list-with-cart';
+  protected store = inject(GlobalStoreService);
 }

@@ -1,0 +1,45 @@
+body {
+  font-family: var(--ff-main);
+  font-size: 1.6rem;
+  font-weight: var(--fw-regular);
+  color: var(--rose-900);
+}
+
+.text {
+  color: currentColor;
+
+  &--bold {
+    font-weight: var(--fw-bold);
+  }
+
+  &--semibold {
+    font-weight: var(--fw-semibold);
+  }
+
+  &--xl {
+    font-size: 4rem;
+    font-weight: var(--fw-bold);
+    line-height: 120%;
+  }
+
+  &--lg {
+    font-size: 2.4rem;
+    font-weight: var(--fw-bold);
+    line-height: 125%;
+  }
+
+  &--md {
+    font-size: 1.6rem;
+    font-weight: var(--fw-semibold);
+  }
+
+  &--lg,
+  &--md {
+    line-height: 150%;
+  }
+
+  &--sm {
+    font-size: 1.4rem;
+    line-height: 150%;
+  }
+}
