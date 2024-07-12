@@ -36,6 +36,13 @@ export class GlobalStoreService {
       }))
     );
   }
+
+  addCartItem(product: Product) {
+    this.#store.update((state) => ({
+      ...state,
+      cart: [...state.cart, { product, quantity: 1 }],
+    }));
+  }
 }
 
 export type GlobalState = {

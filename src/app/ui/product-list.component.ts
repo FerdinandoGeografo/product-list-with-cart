@@ -20,7 +20,16 @@ import { ProductItemComponent } from './product-item.component';
     </section>
   `,
   styles: `
-    :host { grid-column: 1 / span 8 }
+    @use "../../../public/scss/_query-mixin.scss" as mixin;
+
+
+    :host {
+      grid-column: 1 / span 8;
+
+      @include mixin.respond(tablet) {
+        grid-column-end: -1;
+      }
+    }
 
     .products {
       display: flex;
@@ -30,8 +39,13 @@ import { ProductItemComponent } from './product-item.component';
       &__list {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        column-gap: 2.4rem;
-        row-gap: 3.2rem;
+        column-gap: var(--spacing-300);
+        row-gap: var(--spacing-400);
+
+        @include mixin.respond(phone) {
+          grid-template-columns: 1fr;
+          gap: var(--spacing-400);
+        }
       }
     }
   `,

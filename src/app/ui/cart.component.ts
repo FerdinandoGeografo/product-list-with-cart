@@ -82,7 +82,16 @@ import { CurrencyPipe } from '@angular/common';
     </div>
   `,
   styles: `
-    :host { grid-column: 9 / -1 }
+    @use "../../../public/scss/_query-mixin.scss" as mixin;
+
+
+    :host {
+      grid-column: 9 / -1;
+
+      @include mixin.respond(tablet) {
+        grid-column: 1 / -1;
+      }
+    }
 
     .cart {
       background: var(--white);

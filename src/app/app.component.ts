@@ -14,6 +14,8 @@ import { GlobalStoreService } from './global-store.service';
     </main>
   `,
   styles: `
+    @use "../../public/scss/_query-mixin.scss" as mixin;
+
     :host {
       display: block;
       min-height: 100vh;
@@ -27,6 +29,16 @@ import { GlobalStoreService } from './global-store.service';
       place-content: center;
       grid-template-columns: repeat(12, 7.2rem);
       column-gap: var(--spacing-400);
+
+      @include mixin.respond(tablet) {
+        grid-template-columns: repeat(8, auto);
+        gap: var(--spacing-400);
+      }
+
+      @include mixin.respond(phone) {
+        grid-template-columns: repeat(4, auto);
+        column-gap: var(--spacing-150);
+      }
     }
   `,
 })
