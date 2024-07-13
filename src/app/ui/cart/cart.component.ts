@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { CartItem } from '../../models/cart.model';
 import { CurrencyPipe } from '@angular/common';
 import { GlobalStoreService } from '../../data-access/global-store.service';
@@ -66,6 +66,7 @@ import { GlobalStoreService } from '../../data-access/global-store.service';
       </ul>
 
       @if (cart().length > 0) {
+
       <div class="cart__total">
         <span class="text text--sm text--regular">Order Total</span>
         <span class="text text--lg">{{ store.total() | currency : '$' }}</span>
@@ -79,9 +80,10 @@ import { GlobalStoreService } from '../../data-access/global-store.service';
         </span>
       </div>
 
-      <button class="cart__confirm">
+      <button class="cart__confirm" (click)="onConfirmOrder.emit()">
         <span class="text text--md text--semibold">Confirm Order</span>
       </button>
+
       }
     </aside>
   `,
@@ -90,4 +92,6 @@ import { GlobalStoreService } from '../../data-access/global-store.service';
 export class CartComponent {
   protected store = inject(GlobalStoreService);
   cart = input.required<CartItem[]>();
+
+  onConfirmOrder = output();
 }

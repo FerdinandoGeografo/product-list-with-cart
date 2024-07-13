@@ -1,13 +1,14 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { GlobalStoreService } from '../../data-access/global-store.service';
 import { CurrencyPipe } from '@angular/common';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-confirmed-modal',
   standalone: true,
   imports: [CurrencyPipe],
   template: `
-    <dialog #dialogRef class="order">
+    <dialog class="order" @modalAnimation>
       <div class="order__title-box">
         <img class="order__icon" src="images/icon-order-confirmed.svg" alt="" />
         <h1 class="text text--xl">Order Confirmed</h1>
@@ -57,14 +58,32 @@ import { CurrencyPipe } from '@angular/common';
         </div>
       </div>
 
-      <button class="order__btn">
+      <button class="order__btn" (click)="onStartOrder.emit()">
         <span class="text text--md">Start New Order</span>
       </button>
     </dialog>
   `,
   styleUrl: './confirmed-modal.component.scss',
+  animations: [
+    trigger('modalAnimation', [
+      transition(':enter', [
+        style({ opacity: 0, scale: '0.8' }),
+        animate(
+          '300ms cubic-bezier(0.68, -0.55, 0.27, 1.75)',
+          style({ opacity: 1, scale: '1' })
+        ),
+      ]),
+      transition(':leave', [
+        animate(
+          '300ms cubic-bezier(0.68, -0.55, 0.27, 1.75)',
+          style({ opacity: 0, scale: '0.8' })
+        ),
+      ]),
+    ]),
+  ],
 })
 export class ConfirmedModalComponent {
   protected store = inject(GlobalStoreService);
-  open = input<boolean>(false);
+
+  onStartOrder = output();
 }

@@ -25,7 +25,10 @@
     flex-direction: column;
     gap: var(--spacing-200);
 
-    li:not(:last-child) {}
+    li:not(:last-child) {
+      padding-bottom: var(--spacing-200);
+      border-bottom: 1px solid var(--rose-100);
+    }
   }
 
   .item {
@@ -91,6 +94,8 @@
   }
 
   &__total {
+    padding-top: var(--spacing-300);
+    border-top: 1px solid var(--rose-100);
     display: flex;
     align-items: center;
     justify-content: space-between;

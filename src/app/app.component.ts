@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ProductListComponent } from './ui/product-list/product-list.component';
 import { CartComponent } from './ui/cart/cart.component';
 import { GlobalStoreService } from './data-access/global-store.service';
@@ -10,12 +10,21 @@ import { ConfirmedModalComponent } from './ui/confirmed-modal/confirmed-modal.co
   imports: [ProductListComponent, CartComponent, ConfirmedModalComponent],
   template: `
     <app-product-list [products]="store.products()" />
-    <app-cart [cart]="store.cart()" />
+    <app-cart [cart]="store.cart()" (onConfirmOrder)="dialogOpen.set(true)" />
 
-    <!-- <app-confirmed-modal /> -->
+    @if(dialogOpen()) {
+    <app-confirmed-modal (onStartOrder)="onStartOrder()" />
+    }
   `,
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   protected store = inject(GlobalStoreService);
+
+  protected dialogOpen = signal<boolean>(false);
+
+  onStartOrder() {
+    this.store.resetCart();
+    this.dialogOpen.update((dialogOpen) => !dialogOpen);
+  }
 }

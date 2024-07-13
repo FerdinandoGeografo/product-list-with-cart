@@ -4,7 +4,7 @@
   grid-column: 1 / span 8;
 
   @include mixin.respond(tablet) {
-    grid-column-end: -1;
+    grid-column: 1 / -1;
   }
 }
 

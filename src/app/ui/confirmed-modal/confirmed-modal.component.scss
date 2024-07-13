@@ -1,11 +1,8 @@
 :host {
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--bg-mask);
-    z-index: 100
-  }
+  position: absolute;
+  inset: 0;
+  background: var(--bg-mask);
+  z-index: 100;
 }
 
 .order {
@@ -47,7 +44,7 @@
 
     li:not(:last-of-type) .order__item {
       padding-bottom: var(--spacing-200);
-      border-bottom: solid 1px var(--rose-100);
+      border-bottom: 1px solid var(--rose-100);
     }
   }
 
@@ -57,7 +54,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: solid 1px var(--rose-100);
+    border-top: 1px solid var(--rose-100);
   }
 
   &__btn {
