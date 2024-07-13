@@ -1,0 +1,111 @@
+:host {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--bg-mask);
+    z-index: 100
+  }
+}
+
+.order {
+  max-width: 59.2rem;
+  width: 100%;
+  padding: 4rem;
+  border: none;
+  border-radius: 1.2rem;
+  top: 50%;
+  left: 50%;
+  z-index: 101;
+  transform: translate(-50%, -50%);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-400);
+
+  &__title-box {
+    .text.text--md {
+      font-weight: var(--fw-regular);
+      color: var(--rose-500);
+      margin-top: var(--spacing-100);
+    }
+  }
+
+  &__icon {
+    margin-bottom: var(--spacing-300);
+  }
+
+  &__recap {
+    padding: var(--spacing-300);
+    border-radius: .8rem;
+    background: var(--rose-50);
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-200);
+
+    li:not(:last-of-type) .order__item {
+      padding-bottom: var(--spacing-200);
+      border-bottom: solid 1px var(--rose-100);
+    }
+  }
+
+  &__total-box {
+    margin-top: var(--spacing-300);
+    padding-top: var(--spacing-300);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: solid 1px var(--rose-100);
+  }
+
+  &__btn {
+    cursor: pointer;
+    border: none;
+    border-radius: 999px;
+    width: 100%;
+    background: var(--red);
+    color: var(--white);
+    font-family: inherit;
+    padding: var(--spacing-200) var(--spacing-300);
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__data-box {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-300);
+  }
+
+  &__text-box {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-100);
+  }
+
+  &__img {
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: .4rem;
+  }
+
+  &__values {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-100);
+  }
+
+  &__quantity {
+    color: var(--red);
+  }
+
+  &__price {
+    color: var(--rose-500);
+  }
+}

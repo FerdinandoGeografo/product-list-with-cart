@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
-import { Product } from './models/product.model';
-import { CartItem } from './models/cart.model';
+import { CartItem } from '../models/cart.model';
+import { Product } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +13,12 @@ export class GlobalStoreService {
 
   products = computed(() => this.#store().products);
   cart = computed(() => this.#store().cart);
+  total = computed(() =>
+    this.cart().reduce(
+      (acc, item) => (acc += item.product.price * item.quantity),
+      0
+    )
+  );
 
   constructor() {
     this.#http.get<Product[]>('data/data.json').subscribe((products) =>
@@ -42,6 +48,46 @@ export class GlobalStoreService {
       ...state,
       cart: [...state.cart, { product, quantity: 1 }],
     }));
+  }
+
+  removeCartItem(product: Product) {
+    this.#store.update((state) => ({
+      ...state,
+      cart: state.cart.filter((el) => el.product.name !== product.name),
+    }));
+  }
+
+  incrementQuantity(product: Product) {
+    this.#store.update((state) => ({
+      ...state,
+      cart: state.cart.map((el) =>
+        el.product.name === product.name
+          ? { ...el, quantity: el.quantity + 1 }
+          : el
+      ),
+    }));
+  }
+
+  decrementQuantity(product: Product) {
+    if (
+      this.cart().find((el) => el.product.name === product.name)?.quantity === 1
+    ) {
+      this.removeCartItem(product);
+      return;
+    }
+
+    this.#store.update((state) => ({
+      ...state,
+      cart: state.cart.map((el) =>
+        el.product.name === product.name
+          ? { ...el, quantity: el.quantity - 1 }
+          : el
+      ),
+    }));
+  }
+
+  resetCart() {
+    this.#store.update((state) => ({ ...state, cart: [] }));
   }
 }
 

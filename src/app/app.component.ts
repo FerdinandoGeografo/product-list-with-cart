@@ -1,46 +1,20 @@
 import { Component, inject } from '@angular/core';
-import { ProductListComponent } from './ui/product-list.component';
-import { CartComponent } from './ui/cart.component';
-import { GlobalStoreService } from './global-store.service';
+import { ProductListComponent } from './ui/product-list/product-list.component';
+import { CartComponent } from './ui/cart/cart.component';
+import { GlobalStoreService } from './data-access/global-store.service';
+import { ConfirmedModalComponent } from './ui/confirmed-modal/confirmed-modal.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ProductListComponent, CartComponent],
+  imports: [ProductListComponent, CartComponent, ConfirmedModalComponent],
   template: `
-    <main class="main">
-      <app-product-list [products]="store.products()" />
-      <app-cart [cart]="store.cart()" />
-    </main>
+    <app-product-list [products]="store.products()" />
+    <app-cart [cart]="store.cart()" />
+
+    <!-- <app-confirmed-modal /> -->
   `,
-  styles: `
-    @use "../../public/scss/_query-mixin.scss" as mixin;
-
-    :host {
-      display: block;
-      min-height: 100vh;
-      background: var(--rose-50);
-      position: relative;
-    }
-
-    .main {
-      padding-block: var(--spacing-1100);
-      display: grid;
-      place-content: center;
-      grid-template-columns: repeat(12, 7.2rem);
-      column-gap: var(--spacing-400);
-
-      @include mixin.respond(tablet) {
-        grid-template-columns: repeat(8, auto);
-        gap: var(--spacing-400);
-      }
-
-      @include mixin.respond(phone) {
-        grid-template-columns: repeat(4, auto);
-        column-gap: var(--spacing-150);
-      }
-    }
-  `,
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   protected store = inject(GlobalStoreService);

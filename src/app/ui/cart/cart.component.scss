@@ -1,0 +1,123 @@
+@use "../../../../public/scss/_query-mixin.scss" as mixin;
+
+:host {
+  grid-column: 9 / -1;
+
+  @include mixin.respond(tablet) {
+    grid-column: 1 / -1;
+  }
+}
+
+.cart {
+  background: var(--white);
+  border-radius: 1.2rem;
+  padding: var(--spacing-300);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+
+  &__heading {
+    color: var(--red);
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-200);
+
+    li:not(:last-child) {}
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__data-box {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      grid-template-rows: auto auto;
+      gap: var(--spacing-100);
+    }
+
+    &__name {
+      grid-column: 1 / -1;
+      color: var(--rose-900);
+    }
+
+    &__quantity {
+      color: var(--red);
+    }
+
+    &__price,
+    &__subtotal {
+      color: var(--rose-500);
+    }
+
+    &__remove {
+      cursor: pointer;
+      --btn-color: var(--rose-400);
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 50%;
+      border: none;
+      box-shadow: inset 0 0 0 1.25px var(--btn-color);
+      background: transparent;
+      color: var(--btn-color);
+      transition: all .4s;
+      position: relative;
+
+      svg {
+        transition: transform .4s;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      &:hover {
+        --btn-color: var(--rose-900);
+      }
+    }
+  }
+
+  &__empty {
+    padding-block: var(--spacing-200);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-200);
+    color: var(--rose-500);
+  }
+
+  &__total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__delivery {
+    padding: var(--spacing-200);
+    background: var(--rose-50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 8px;
+  }
+
+  &__confirm {
+    cursor: pointer;
+    width: 100%;
+    padding: var(--spacing-200) var(--spacing-300);
+    border: none;
+    outline: none;
+    background: var(--red);
+    transition: all .4s;
+    font-family: inherit;
+    border-radius: 999px;
+    color: var(--white);
+
+    &:hover {}
+  }
+}
