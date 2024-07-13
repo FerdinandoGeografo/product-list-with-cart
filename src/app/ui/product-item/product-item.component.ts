@@ -55,11 +55,11 @@ import { GlobalStoreService } from '../../data-access/global-store.service';
       </div>
 
       <div class="product__info">
-        <p class="text text--sm text--regular product__category">
+        <p class="text text--sm text--rose-500">
           {{ product().category }}
         </p>
-        <h3 class="text text--md product__name">{{ product().name }}</h3>
-        <p class="text text--md product__price">
+        <h3 class="text text--md">{{ product().name }}</h3>
+        <p class="text text--md text--red">
           {{ product().price | currency : '$' }}
         </p>
       </div>

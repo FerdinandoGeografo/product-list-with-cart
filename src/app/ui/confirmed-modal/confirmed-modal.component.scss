@@ -57,17 +57,6 @@
     border-top: 1px solid var(--rose-100);
   }
 
-  &__btn {
-    cursor: pointer;
-    border: none;
-    border-radius: 999px;
-    width: 100%;
-    background: var(--red);
-    color: var(--white);
-    font-family: inherit;
-    padding: var(--spacing-200) var(--spacing-300);
-  }
-
   &__item {
     display: flex;
     align-items: center;
@@ -96,13 +85,5 @@
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-100);
-  }
-
-  &__quantity {
-    color: var(--red);
-  }
-
-  &__price {
-    color: var(--rose-500);
   }
 }

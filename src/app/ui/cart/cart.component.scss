@@ -16,10 +16,6 @@
   flex-direction: column;
   gap: var(--spacing-300);
 
-  &__heading {
-    color: var(--red);
-  }
-
   &__items {
     display: flex;
     flex-direction: column;
@@ -45,16 +41,6 @@
 
     &__name {
       grid-column: 1 / -1;
-      color: var(--rose-900);
-    }
-
-    &__quantity {
-      color: var(--red);
-    }
-
-    &__price,
-    &__subtotal {
-      color: var(--rose-500);
     }
 
     &__remove {
@@ -109,20 +95,5 @@
     justify-content: center;
     gap: 8px;
     border-radius: 8px;
-  }
-
-  &__confirm {
-    cursor: pointer;
-    width: 100%;
-    padding: var(--spacing-200) var(--spacing-300);
-    border: none;
-    outline: none;
-    background: var(--red);
-    transition: all .4s;
-    font-family: inherit;
-    border-radius: 999px;
-    color: var(--white);
-
-    &:hover {}
   }
 }

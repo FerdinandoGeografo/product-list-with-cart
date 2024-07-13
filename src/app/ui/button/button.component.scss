@@ -1,0 +1,20 @@
+:host {
+  &.btn {
+    padding: var(--spacing-200) var(--spacing-300);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-100);
+    font-family: inherit;
+    border: none;
+    border-radius: 999px;
+    outline: none;
+    cursor: pointer;
+    transition: all .4s;
+
+    /* to split */
+    width: 100%;
+    background: var(--red);
+    color: var(--white);
+  }
+}

@@ -1,17 +1,16 @@
 import { Component, inject, input, output } from '@angular/core';
-import { CartItem } from '../../models/cart.model';
 import { CurrencyPipe } from '@angular/common';
+import { CartItem } from '../../models/cart.model';
 import { GlobalStoreService } from '../../data-access/global-store.service';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, ButtonComponent],
   template: `
     <aside class="cart">
-      <h2 class="cart__heading text text--lg">
-        Your Cart ({{ cart().length }})
-      </h2>
+      <h2 class="text text--lg text--red">Your Cart ({{ cart().length }})</h2>
 
       <ul class="cart__items">
         @for (item of cart(); track $index) {
@@ -22,15 +21,15 @@ import { GlobalStoreService } from '../../data-access/global-store.service';
                 {{ item.product.name }}
               </p>
 
-              <span class="text text--sm text--semibold item__quantity">
+              <span class="text text--sm text--semibold text--red">
                 {{ item.quantity }}x
               </span>
 
-              <span class="text text--sm text--regular item__price">
+              <span class="text text--sm text--rose-500">
                 &commat; {{ item.product.price | currency : '$' }}
               </span>
 
-              <span class="text text--sm text--semibold item__subtotal">
+              <span class="text text--sm text--semibold text--rose-500">
                 {{ item.product.price * item.quantity | currency : '$' }}
               </span>
             </div>
@@ -68,22 +67,23 @@ import { GlobalStoreService } from '../../data-access/global-store.service';
       @if (cart().length > 0) {
 
       <div class="cart__total">
-        <span class="text text--sm text--regular">Order Total</span>
+        <span class="text text--sm">Order Total</span>
         <span class="text text--lg">{{ store.total() | currency : '$' }}</span>
       </div>
 
       <div class="cart__delivery">
         <img src="images/icon-carbon-neutral.svg" alt="" />
-        <span class="text text--sm text--regular">
+        <p class="text text--sm">
           This is a
           <span class="text--semibold">carbon-neutral</span> delivery
-        </span>
+        </p>
       </div>
 
-      <button class="cart__confirm" (click)="onConfirmOrder.emit()">
-        <span class="text text--md text--semibold">Confirm Order</span>
+      <button app-button (click)="onConfirmOrder.emit()">
+        <span slot="label" class="text text--md text--semibold">
+          Confirm Order
+        </span>
       </button>
-
       }
     </aside>
   `,

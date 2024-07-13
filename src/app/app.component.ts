@@ -20,7 +20,6 @@ import { ConfirmedModalComponent } from './ui/confirmed-modal/confirmed-modal.co
 })
 export class AppComponent {
   protected store = inject(GlobalStoreService);
-
   protected dialogOpen = signal<boolean>(false);
 
   onStartOrder() {

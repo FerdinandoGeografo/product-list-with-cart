@@ -1,12 +1,13 @@
 import { Component, inject, output } from '@angular/core';
-import { GlobalStoreService } from '../../data-access/global-store.service';
-import { CurrencyPipe } from '@angular/common';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { CurrencyPipe } from '@angular/common';
+import { GlobalStoreService } from '../../data-access/global-store.service';
+import { ButtonComponent } from './../button/button.component';
 
 @Component({
   selector: 'app-confirmed-modal',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, ButtonComponent],
   template: `
     <dialog class="order" @modalAnimation>
       <div class="order__title-box">
@@ -33,10 +34,10 @@ import { animate, style, transition, trigger } from '@angular/animations';
                   </h3>
 
                   <div class="order__values">
-                    <span class="order__quantity text text--sm text--semibold">
+                    <span class="text text--sm text--semibold text--red">
                       {{ item.quantity }}x
                     </span>
-                    <span class="order__price text text--sm">
+                    <span class="text text--sm text--rose-500">
                       &commat; {{ item.product.price | currency : '$' }}
                     </span>
                   </div>
@@ -51,15 +52,15 @@ import { animate, style, transition, trigger } from '@angular/animations';
         </ul>
 
         <div class="order__total-box">
-          <span class="text text--regular text--sm"> Order Total </span>
+          <span class="text text--sm"> Order Total </span>
           <span class="text text--lg">
             {{ store.total() | currency : '$' }}
           </span>
         </div>
       </div>
 
-      <button class="order__btn" (click)="onStartOrder.emit()">
-        <span class="text text--md">Start New Order</span>
+      <button app-button (click)="onStartOrder.emit()">
+        <span slot="label" class="text text--md">Start New Order</span>
       </button>
     </dialog>
   `,

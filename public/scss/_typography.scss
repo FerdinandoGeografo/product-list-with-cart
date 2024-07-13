@@ -9,10 +9,6 @@ body {
   display: inline-block;
   color: currentColor;
 
-  &--bold {
-    font-weight: var(--fw-bold);
-  }
-
   &--semibold {
     font-weight: var(--fw-semibold);
   }
@@ -20,7 +16,7 @@ body {
   &--xl {
     font-size: 4rem;
     font-weight: var(--fw-bold);
-    line-height: 120%;
+    line-height: 4.8rem;
   }
 
   &--lg {
@@ -38,5 +34,13 @@ body {
   &--sm {
     font-size: 1.4rem;
     line-height: 1.9rem;
+  }
+
+  &--red {
+    color: var(--red);
+  }
+
+  &--rose-500 {
+    color: var(--rose-500);
   }
 }
