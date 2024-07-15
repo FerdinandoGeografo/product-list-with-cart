@@ -1,33 +1,26 @@
-:host {
+@use "../../../../public/scss/query-mixin" as mixin;
+
+.order {
   position: absolute;
   inset: 0;
   z-index: 100;
   background: var(--bg-mask);
   display: grid;
   place-content: center;
-}
 
-.order {
-  position: static;
-  max-width: 59.2rem;
-  width: 100%;
-  padding: 4rem;
-  border: none;
-  border-radius: 1.2rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-400);
-
-  &__title-box {
-    .text.text--md {
-      font-weight: var(--fw-regular);
-      color: var(--rose-500);
-      margin-top: var(--spacing-100);
-    }
+  &__modal {
+    position: static;
+    max-width: 59.2rem;
+    padding: var(--spacing-500);
+    border: none;
+    border-radius: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-400);
   }
 
-  &__icon {
-    margin-bottom: var(--spacing-300);
+  &__title {
+    padding: var(--spacing-300) 0 var(--spacing-100) 0;
   }
 
   &__recap {

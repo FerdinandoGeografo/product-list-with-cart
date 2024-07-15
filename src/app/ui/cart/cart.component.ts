@@ -1,4 +1,4 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 
 import { CartItem } from '../../models/cart.model';
@@ -10,35 +10,37 @@ import { ButtonComponent } from '../button/button.component';
   imports: [CurrencyPipe, ButtonComponent],
   template: `
     <aside class="cart">
-      <h2 class="text text--lg text--red-100">Your Cart ({{ length() }})</h2>
+      <h2 class="text text--lg text--red-100">Your Cart ({{ quantity() }})</h2>
 
       <ul class="cart__items">
         @for (item of cart(); track $index) {
         <li>
-          <div class="item">
-            <div class="item__data-box">
-              <p class="text text--sm text--semibold item__name">
+          <div class="cart__item">
+            <div class="cart__item-info">
+              <p class="text text--sm text--semibold">
                 {{ item.product.name }}
               </p>
 
-              <span class="text text--sm text--semibold text--red-100">
-                {{ item.quantity }}x
-              </span>
+              <div class="cart__item-stats">
+                <span class="text text--sm text--semibold text--red-100">
+                  {{ item.quantity }}x
+                </span>
 
-              <span class="text text--sm text--rose-500">
-                &commat; {{ item.product.price | currency : '$' }}
-              </span>
+                <span class="text text--sm text--rose-500">
+                  &commat; {{ item.product.price | currency : '$' }}
+                </span>
 
-              <span class="text text--sm text--semibold text--rose-500">
-                {{ item.product.price * item.quantity | currency : '$' }}
-              </span>
+                <span class="text text--sm text--semibold text--rose-500">
+                  {{ item.product.price * item.quantity | currency : '$' }}
+                </span>
+              </div>
             </div>
 
             <button
               app-button
               severity="icon"
               styleClass="btn--icon--remove"
-              (click)="onRemoveCartItem.emit(item)"
+              (onClick)="onRemoveCartItem.emit(item)"
             >
               <svg
                 slot="icon"
@@ -81,7 +83,7 @@ import { ButtonComponent } from '../button/button.component';
         </p>
       </div>
 
-      <button app-button (click)="onConfirmOrder.emit()">
+      <button app-button (onClick)="onConfirmOrder.emit()">
         <span slot="label" class="text text--md text--semibold">
           Confirm Order
         </span>
@@ -93,11 +95,8 @@ import { ButtonComponent } from '../button/button.component';
 })
 export class CartComponent {
   cart = input.required<CartItem[]>();
+  quantity = input.required<number>();
   total = input.required<number>();
-
-  length = computed(() =>
-    this.cart().reduce((acc, el) => (acc += el.quantity), 0)
-  );
 
   onRemoveCartItem = output<CartItem>();
   onConfirmOrder = output();

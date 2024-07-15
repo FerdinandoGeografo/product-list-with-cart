@@ -1,7 +1,7 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 
 @Component({
-  selector: '[app-button]',
+  selector: 'button[app-button]',
   standalone: true,
   imports: [],
   template: `
@@ -11,11 +11,14 @@ import { Component, computed, input } from '@angular/core';
   styleUrl: './button.component.scss',
   host: {
     '[class]': 'btnClasses()',
+    '(click)': 'onClick.emit()',
   },
 })
 export class ButtonComponent {
   severity = input<'primary' | 'secondary' | 'icon'>('primary');
   styleClass = input<string>();
+
+  onClick = output();
 
   protected btnClasses = computed(
     () => `btn btn--${this.severity()} ${this.styleClass() || ''}`

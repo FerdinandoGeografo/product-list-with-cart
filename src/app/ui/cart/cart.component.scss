@@ -16,6 +16,15 @@
   flex-direction: column;
   gap: var(--spacing-300);
 
+  &__empty {
+    padding-block: var(--spacing-200);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-200);
+    color: var(--rose-500);
+  }
+
   &__items {
     display: flex;
     flex-direction: column;
@@ -27,56 +36,22 @@
     }
   }
 
-  .item {
+  &__item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    &__data-box {
-      display: grid;
-      grid-template-columns: auto auto auto;
-      grid-template-rows: auto auto;
-      gap: var(--spacing-100);
-    }
-
-    &__name {
-      grid-column: 1 / -1;
-    }
-
-    &__remove {
-      cursor: pointer;
-      --btn-color: var(--rose-400);
-      width: 1.75rem;
-      height: 1.75rem;
-      border-radius: 50%;
-      border: none;
-      box-shadow: inset 0 0 0 1.25px var(--btn-color);
-      background: transparent;
-      color: var(--btn-color);
-      transition: all .4s;
-      position: relative;
-
-      svg {
-        transition: transform .4s;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      &:hover {
-        --btn-color: var(--rose-900);
-      }
-    }
   }
 
-  &__empty {
-    padding-block: var(--spacing-200);
+  &__item-info {
     display: flex;
     flex-direction: column;
+    gap: var(--spacing-100);
+  }
+
+  &__item-stats {
+    display: flex;
     align-items: center;
-    gap: var(--spacing-200);
-    color: var(--rose-500);
+    gap: var(--spacing-100);
   }
 
   &__total {
@@ -93,7 +68,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: var(--spacing-100);
     border-radius: 8px;
   }
 }

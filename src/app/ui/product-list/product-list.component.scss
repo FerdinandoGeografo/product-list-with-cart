@@ -11,7 +11,7 @@
 .products {
   display: flex;
   flex-direction: column;
-  gap: 3.2rem;
+  gap: var(--spacing-400);
 
   &__list {
     display: grid;

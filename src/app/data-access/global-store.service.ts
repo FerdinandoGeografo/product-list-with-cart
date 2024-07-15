@@ -12,7 +12,7 @@ export type GlobalState = {
 const initialState: GlobalState = {
   products: [],
   cart: [],
-  orderConfirmed: false,
+  orderConfirmed: true,
 };
 
 @Injectable({
@@ -23,10 +23,15 @@ export class GlobalStoreService {
   #store = signal<GlobalState>(initialState);
   #logEffect = effect(() => console.log('State changed\t: ', this.#store()));
 
+  // State
   products = computed(() => this.#store().products);
   cart = computed(() => this.#store().cart);
   orderConfirmed = computed(() => this.#store().orderConfirmed);
 
+  // Derived State
+  cartQuantity = computed(() =>
+    this.cart().reduce((acc, el) => (acc += el.quantity), 0)
+  );
   total = computed(() =>
     this.cart().reduce(
       (acc, item) => (acc += item.product.price * item.quantity),

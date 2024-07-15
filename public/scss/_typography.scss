@@ -9,6 +9,10 @@ body {
   display: inline-block;
   color: currentColor;
 
+  &--regular {
+    font-weight: var(--fw-regular) !important;
+  }
+
   &--semibold {
     font-weight: var(--fw-semibold);
   }

@@ -13,14 +13,18 @@ import { ConfirmedModalComponent } from './ui/confirmed-modal/confirmed-modal.co
     <app-product-list [products]="store.products()" />
     <app-cart
       [cart]="store.cart()"
+      [quantity]="store.cartQuantity()"
       [total]="store.total()"
       (onRemoveCartItem)="store.removeCartItem($event.product)"
       (onConfirmOrder)="store.confirmOrder()"
     />
 
-    @if(store.orderConfirmed()) {
-    <app-confirmed-modal (onStartNewOrder)="store.startNewOrder()" />
-    }
+    <app-confirmed-modal
+      [open]="store.orderConfirmed()"
+      [cart]="store.cart()"
+      [total]="store.total()"
+      (onStartNewOrder)="store.startNewOrder()"
+    />
   `,
   styleUrl: './app.component.scss',
 })

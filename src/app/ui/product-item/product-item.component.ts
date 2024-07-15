@@ -34,7 +34,7 @@ import { ButtonComponent } from '../button/button.component';
               app-button
               severity="icon"
               styleClass="btn--icon--ops"
-              (click)="store.decrementQuantity(product())"
+              (onClick)="store.decrementQuantity(product())"
             >
               <svg
                 slot="icon"
@@ -52,7 +52,7 @@ import { ButtonComponent } from '../button/button.component';
               app-button
               severity="icon"
               styleClass="btn--icon--ops"
-              (click)="store.incrementQuantity(product())"
+              (onClick)="store.incrementQuantity(product())"
             >
               <svg
                 slot="icon"
@@ -73,7 +73,7 @@ import { ButtonComponent } from '../button/button.component';
           <button
             app-button
             severity="secondary"
-            (click)="store.addCartItem(product())"
+            (onClick)="store.addCartItem(product())"
           >
             <img slot="icon" src="images/icon-add-to-cart.svg" alt="" />
             <span slot="label" class="text text--sm text--semibold">
