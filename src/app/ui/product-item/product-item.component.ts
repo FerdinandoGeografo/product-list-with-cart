@@ -24,7 +24,7 @@ import { ButtonComponent } from '../button/button.component';
           "
           sizes="(max-width: 37.5em) 327px, (max-width: 60em) 214px, 251px"
           [src]="product().image.desktop"
-          [alt]="product().name"
+          [alt]="product().name + ' showcase image'"
         />
 
         <div class="product__btn-box">
@@ -33,6 +33,9 @@ import { ButtonComponent } from '../button/button.component';
             <button
               app-button
               severity="icon"
+              [ariaLabel]="
+                'Decrement quantity of ' + product().name + ' in the cart.'
+              "
               styleClass="btn--icon--ops"
               (onClick)="store.decrementQuantity(product())"
             >
@@ -51,6 +54,9 @@ import { ButtonComponent } from '../button/button.component';
             <button
               app-button
               severity="icon"
+              [ariaLabel]="
+                'Increment quantity of ' + product().name + ' in the cart.'
+              "
               styleClass="btn--icon--ops"
               (onClick)="store.incrementQuantity(product())"
             >
@@ -73,9 +79,14 @@ import { ButtonComponent } from '../button/button.component';
           <button
             app-button
             severity="secondary"
+            [ariaLabel]="'Add ' + product().name + ' to the cart.'"
             (onClick)="store.addCartItem(product())"
           >
-            <img slot="icon" src="images/icon-add-to-cart.svg" alt="" />
+            <img
+              slot="icon"
+              src="images/icon-add-to-cart.svg"
+              alt="Cart with plus icon"
+            />
             <span slot="label" class="text text--sm text--semibold">
               Add to Cart
             </span>

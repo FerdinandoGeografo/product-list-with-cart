@@ -10,6 +10,7 @@ import { Component, computed, input, output } from '@angular/core';
   `,
   styleUrl: './button.component.scss',
   host: {
+    '[ariaLabel]': 'ariaLabel()',
     '[class]': 'btnClasses()',
     '(click)': 'onClick.emit()',
   },
@@ -17,6 +18,7 @@ import { Component, computed, input, output } from '@angular/core';
 export class ButtonComponent {
   severity = input<'primary' | 'secondary' | 'icon'>('primary');
   styleClass = input<string>();
+  ariaLabel = input.required<string>();
 
   onClick = output();
 

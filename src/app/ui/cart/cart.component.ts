@@ -40,6 +40,7 @@ import { ButtonComponent } from '../button/button.component';
               app-button
               severity="icon"
               styleClass="btn--icon--remove"
+              [ariaLabel]="'Remove ' + item.product.name + ' from the cart.'"
               (onClick)="onRemoveCartItem.emit(item)"
             >
               <svg
@@ -60,7 +61,7 @@ import { ButtonComponent } from '../button/button.component';
         </li>
         } @empty {
         <div class="cart__empty">
-          <img src="images/illustration-empty-cart.svg" alt="" />
+          <img src="images/illustration-empty-cart.svg" alt="Empty cart icon" />
 
           <p class="text text--sm text--semibold">
             Your added items will appear here
@@ -76,14 +77,18 @@ import { ButtonComponent } from '../button/button.component';
       </div>
 
       <div class="cart__delivery">
-        <img src="images/icon-carbon-neutral.svg" alt="" />
+        <img src="images/icon-carbon-neutral.svg" alt="Green tree icon" />
         <p class="text text--sm">
           This is a
           <span class="text--semibold">carbon-neutral</span> delivery
         </p>
       </div>
 
-      <button app-button (onClick)="onConfirmOrder.emit()">
+      <button
+        app-button
+        ariaLabel="Confirm the order in the cart."
+        (onClick)="onConfirmOrder.emit()"
+      >
         <span slot="label" class="text text--md text--semibold">
           Confirm Order
         </span>

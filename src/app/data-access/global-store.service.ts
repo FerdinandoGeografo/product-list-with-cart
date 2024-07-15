@@ -12,7 +12,7 @@ export type GlobalState = {
 const initialState: GlobalState = {
   products: [],
   cart: [],
-  orderConfirmed: true,
+  orderConfirmed: false,
 };
 
 @Injectable({
@@ -44,20 +44,6 @@ export class GlobalStoreService {
       this.#store.update((state) => ({
         ...state,
         products,
-        cart: [
-          {
-            product: { ...products[3] },
-            quantity: 1,
-          },
-          {
-            product: { ...products[1] },
-            quantity: 4,
-          },
-          {
-            product: { ...products[8] },
-            quantity: 2,
-          },
-        ],
       }))
     );
   }

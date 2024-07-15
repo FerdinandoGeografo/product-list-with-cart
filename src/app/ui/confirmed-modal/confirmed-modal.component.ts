@@ -4,6 +4,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 
 import { ButtonComponent } from './../button/button.component';
 import { CartItem } from '../../models/cart.model';
+import { modalTransitions } from '../../animations/modal-transitions';
 
 @Component({
   selector: 'app-confirmed-modal',
@@ -11,10 +12,13 @@ import { CartItem } from '../../models/cart.model';
   imports: [CurrencyPipe, ButtonComponent],
   template: `
     @if(open()) {
-    <section class="order">
-      <dialog class="order__modal" @modalAnimation>
+    <section class="order" @modalTransitions>
+      <dialog class="order__modal">
         <div>
-          <img src="images/icon-order-confirmed.svg" alt="" />
+          <img
+            src="images/icon-order-confirmed.svg"
+            alt="Successful operation check mark"
+          />
           <h1 class="text text--xl order__title">Order Confirmed</h1>
           <p class="text text--md text--regular text--rose-500">
             We hope you enjoy your food!
@@ -30,7 +34,7 @@ import { CartItem } from '../../models/cart.model';
                   <img
                     class="order__img"
                     [src]="item.product.image.thumbnail"
-                    [alt]="item.product.name"
+                    [alt]="item.product.name + ' thumbnail image'"
                   />
 
                   <div class="order__text-box">
@@ -65,7 +69,11 @@ import { CartItem } from '../../models/cart.model';
           </div>
         </div>
 
-        <button app-button (onClick)="onStartNewOrder.emit()">
+        <button
+          app-button
+          ariaLabel="Start new order resetting the cart."
+          (onClick)="onStartNewOrder.emit()"
+        >
           <span slot="label" class="text text--md">Start New Order</span>
         </button>
       </dialog>
@@ -73,23 +81,7 @@ import { CartItem } from '../../models/cart.model';
     }
   `,
   styleUrl: './confirmed-modal.component.scss',
-  animations: [
-    trigger('modalAnimation', [
-      transition(':enter', [
-        style({ opacity: 0, scale: '0.8' }),
-        animate(
-          '300ms cubic-bezier(0.68, -0.55, 0.27, 1.75)',
-          style({ opacity: 1, scale: '1' })
-        ),
-      ]),
-      transition(':leave', [
-        animate(
-          '300ms cubic-bezier(0.68, -0.55, 0.27, 1.75)',
-          style({ opacity: 0, scale: '0.8' })
-        ),
-      ]),
-    ]),
-  ],
+  animations: [modalTransitions],
 })
 export class ConfirmedModalComponent {
   open = input.required<boolean>();
