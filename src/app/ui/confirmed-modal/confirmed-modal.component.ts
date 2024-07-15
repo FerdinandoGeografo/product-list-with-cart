@@ -1,6 +1,7 @@
 import { Component, inject, output } from '@angular/core';
-import { animate, style, transition, trigger } from '@angular/animations';
 import { CurrencyPipe } from '@angular/common';
+import { animate, style, transition, trigger } from '@angular/animations';
+
 import { GlobalStoreService } from '../../data-access/global-store.service';
 import { ButtonComponent } from './../button/button.component';
 
@@ -34,7 +35,7 @@ import { ButtonComponent } from './../button/button.component';
                   </h3>
 
                   <div class="order__values">
-                    <span class="text text--sm text--semibold text--red">
+                    <span class="text text--sm text--semibold text--red-100">
                       {{ item.quantity }}x
                     </span>
                     <span class="text text--sm text--rose-500">
@@ -59,7 +60,7 @@ import { ButtonComponent } from './../button/button.component';
         </div>
       </div>
 
-      <button app-button (click)="onStartOrder.emit()">
+      <button app-button (click)="onStartNewOrder.emit()">
         <span slot="label" class="text text--md">Start New Order</span>
       </button>
     </dialog>
@@ -86,5 +87,5 @@ import { ButtonComponent } from './../button/button.component';
 export class ConfirmedModalComponent {
   protected store = inject(GlobalStoreService);
 
-  onStartOrder = output();
+  protected onStartNewOrder = output();
 }

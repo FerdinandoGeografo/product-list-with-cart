@@ -3,6 +3,18 @@ import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { CartItem } from '../models/cart.model';
 import { Product } from '../models/product.model';
 
+export type GlobalState = {
+  products: Product[];
+  cart: CartItem[];
+  orderConfirmed: boolean;
+};
+
+const initialState: GlobalState = {
+  products: [],
+  cart: [],
+  orderConfirmed: false,
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -13,6 +25,8 @@ export class GlobalStoreService {
 
   products = computed(() => this.#store().products);
   cart = computed(() => this.#store().cart);
+  orderConfirmed = computed(() => this.#store().orderConfirmed);
+
   total = computed(() =>
     this.cart().reduce(
       (acc, item) => (acc += item.product.price * item.quantity),
@@ -69,34 +83,27 @@ export class GlobalStoreService {
   }
 
   decrementQuantity(product: Product) {
-    if (
-      this.cart().find((el) => el.product.name === product.name)?.quantity === 1
-    ) {
-      this.removeCartItem(product);
-      return;
-    }
-
     this.#store.update((state) => ({
       ...state,
-      cart: state.cart.map((el) =>
-        el.product.name === product.name
-          ? { ...el, quantity: el.quantity - 1 }
-          : el
-      ),
+      cart: state.cart
+        .map((el) =>
+          el.product.name === product.name
+            ? { ...el, quantity: el.quantity - 1 }
+            : el
+        )
+        .filter((el) => el.quantity > 0),
     }));
   }
 
-  resetCart() {
-    this.#store.update((state) => ({ ...state, cart: [] }));
+  confirmOrder() {
+    this.#store.update((state) => ({ ...state, orderConfirmed: true }));
+  }
+
+  startNewOrder() {
+    this.#store.update((state) => ({
+      ...state,
+      cart: [],
+      orderConfirmed: false,
+    }));
   }
 }
-
-export type GlobalState = {
-  products: Product[];
-  cart: CartItem[];
-};
-
-const initialState: GlobalState = {
-  products: [],
-  cart: [],
-};

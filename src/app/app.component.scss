@@ -2,18 +2,18 @@
 
 :host {
   min-height: 100vh;
-  display: grid;
   padding-block: var(--spacing-1100);
-  place-content: center;
+  background: var(--rose-50);
+
+  display: grid;
+  justify-content: center;
   grid-template-columns: repeat(12, 7.2rem);
   column-gap: var(--spacing-400);
-
-  background: var(--rose-50);
   position: relative;
 
   @include mixin.respond(tablet) {
     padding: var(--spacing-500);
-    grid-template-columns: repeat(8, auto);
+    grid-template-columns: repeat(8, 1fr);
     gap: var(--spacing-400);
   }
 

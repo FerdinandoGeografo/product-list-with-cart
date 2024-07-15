@@ -21,7 +21,7 @@
 
     @include mixin.respond(phone) {
       grid-template-columns: 1fr;
-      gap: var(--spacing-400);
+      row-gap: var(--spacing-300);
     }
   }
 }

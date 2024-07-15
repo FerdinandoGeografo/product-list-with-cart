@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 @Component({
   selector: '[app-button]',
@@ -10,7 +10,14 @@ import { Component } from '@angular/core';
   `,
   styleUrl: './button.component.scss',
   host: {
-    class: 'btn',
+    '[class]': 'btnClasses()',
   },
 })
-export class ButtonComponent {}
+export class ButtonComponent {
+  severity = input<'primary' | 'secondary' | 'icon'>('primary');
+  styleClass = input<string>();
+
+  protected btnClasses = computed(
+    () => `btn btn--${this.severity()} ${this.styleClass() || ''}`
+  );
+}

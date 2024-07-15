@@ -1,20 +1,19 @@
 :host {
   position: absolute;
   inset: 0;
-  background: var(--bg-mask);
   z-index: 100;
+  background: var(--bg-mask);
+  display: grid;
+  place-content: center;
 }
 
 .order {
+  position: static;
   max-width: 59.2rem;
   width: 100%;
   padding: 4rem;
   border: none;
   border-radius: 1.2rem;
-  top: 50%;
-  left: 50%;
-  z-index: 101;
-  transform: translate(-50%, -50%);
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--spacing-400);

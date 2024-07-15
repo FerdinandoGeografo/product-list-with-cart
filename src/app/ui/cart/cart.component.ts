@@ -1,7 +1,7 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
+
 import { CartItem } from '../../models/cart.model';
-import { GlobalStoreService } from '../../data-access/global-store.service';
 import { ButtonComponent } from '../button/button.component';
 
 @Component({
@@ -10,7 +10,7 @@ import { ButtonComponent } from '../button/button.component';
   imports: [CurrencyPipe, ButtonComponent],
   template: `
     <aside class="cart">
-      <h2 class="text text--lg text--red">Your Cart ({{ cart().length }})</h2>
+      <h2 class="text text--lg text--red-100">Your Cart ({{ length() }})</h2>
 
       <ul class="cart__items">
         @for (item of cart(); track $index) {
@@ -21,7 +21,7 @@ import { ButtonComponent } from '../button/button.component';
                 {{ item.product.name }}
               </p>
 
-              <span class="text text--sm text--semibold text--red">
+              <span class="text text--sm text--semibold text--red-100">
                 {{ item.quantity }}x
               </span>
 
@@ -35,10 +35,13 @@ import { ButtonComponent } from '../button/button.component';
             </div>
 
             <button
-              class="item__remove"
-              (click)="store.removeCartItem(item.product)"
+              app-button
+              severity="icon"
+              styleClass="btn--icon--remove"
+              (click)="onRemoveCartItem.emit(item)"
             >
               <svg
+                slot="icon"
                 xmlns="http://www.w3.org/2000/svg"
                 width="8.75"
                 height="8.75"
@@ -65,10 +68,9 @@ import { ButtonComponent } from '../button/button.component';
       </ul>
 
       @if (cart().length > 0) {
-
       <div class="cart__total">
         <span class="text text--sm">Order Total</span>
-        <span class="text text--lg">{{ store.total() | currency : '$' }}</span>
+        <span class="text text--lg">{{ total() | currency : '$' }}</span>
       </div>
 
       <div class="cart__delivery">
@@ -90,8 +92,13 @@ import { ButtonComponent } from '../button/button.component';
   styleUrl: './cart.component.scss',
 })
 export class CartComponent {
-  protected store = inject(GlobalStoreService);
   cart = input.required<CartItem[]>();
+  total = input.required<number>();
 
+  length = computed(() =>
+    this.cart().reduce((acc, el) => (acc += el.quantity), 0)
+  );
+
+  onRemoveCartItem = output<CartItem>();
   onConfirmOrder = output();
 }
