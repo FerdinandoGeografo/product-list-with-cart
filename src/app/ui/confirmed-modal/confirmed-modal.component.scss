@@ -5,28 +5,51 @@
   inset: 0;
   z-index: 100;
   background: var(--bg-mask);
-  display: grid;
-  place-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include mixin.respond(tablet) {
+    padding-inline: var(--spacing-500);
+  }
+
+  @include mixin.respond(phone) {
+    padding-inline: 0;
+    max-height: 100vh;
+    align-items: end;
+  }
 
   &__modal {
+    box-sizing: border-box;
+    width: 59.2rem;
+    overflow: hidden;
     position: static;
-    max-width: 59.2rem;
     padding: var(--spacing-500);
     border: none;
     border-radius: 1.2rem;
     display: flex;
     flex-direction: column;
     gap: var(--spacing-400);
+
+    @include mixin.respond(tablet) {
+      flex: 1;
+    }
+
+    @include mixin.respond(phone) {
+      padding: var(--spacing-500) var(--spacing-300) var(--spacing-300);
+      border-radius: 1.2rem 1.2rem 0 0;
+    }
   }
 
   &__title {
+    display: block;
     padding: var(--spacing-300) 0 var(--spacing-100) 0;
   }
 
-  &__recap {
+  &__cart {
     padding: var(--spacing-300);
-    border-radius: .8rem;
     background: var(--rose-50);
+    border-radius: .8rem;
   }
 
   &__items {
@@ -40,7 +63,7 @@
     }
   }
 
-  &__total-box {
+  &__total {
     margin-top: var(--spacing-300);
     padding-top: var(--spacing-300);
     display: flex;
@@ -50,15 +73,23 @@
   }
 
   &__item {
+    // need to fix layout on mobile here
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--spacing-100);
+  }
+
+  &__item-name {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   &__data-box {
     display: flex;
     align-items: center;
-    gap: var(--spacing-300);
+    gap: var(--spacing-200);
   }
 
   &__text-box {
@@ -73,7 +104,7 @@
     border-radius: .4rem;
   }
 
-  &__values {
+  &__amount {
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-100);

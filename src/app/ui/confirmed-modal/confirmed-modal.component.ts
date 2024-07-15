@@ -21,7 +21,7 @@ import { CartItem } from '../../models/cart.model';
           </p>
         </div>
 
-        <div class="order__recap">
+        <div class="order__cart">
           <ul class="order__items">
             @for (item of cart(); track $index) {
             <li>
@@ -34,11 +34,11 @@ import { CartItem } from '../../models/cart.model';
                   />
 
                   <div class="order__text-box">
-                    <h3 class="text text--sm text--semibold">
+                    <h3 class="text text--sm text--semibold order__item-name">
                       {{ item.product.name }}
                     </h3>
 
-                    <div class="order__values">
+                    <div class="order__amount">
                       <span class="text text--sm text--semibold text--red-100">
                         {{ item.quantity }}x
                       </span>
@@ -48,6 +48,7 @@ import { CartItem } from '../../models/cart.model';
                     </div>
                   </div>
                 </div>
+
                 <span class="text text--md">
                   {{ item.product.price * item.quantity | currency : '$' }}
                 </span>
@@ -56,7 +57,7 @@ import { CartItem } from '../../models/cart.model';
             }
           </ul>
 
-          <div class="order__total-box">
+          <div class="order__total">
             <span class="text text--sm"> Order Total </span>
             <span class="text text--lg">
               {{ total() | currency : '$' }}
