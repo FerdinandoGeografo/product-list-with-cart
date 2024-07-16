@@ -22,7 +22,7 @@ import { ButtonComponent } from '../button/button.component';
             product().image.desktop +
             ' 502w'
           "
-          sizes="(max-width: 37.5em) 327px, (max-width: 60em) 214px, 251px"
+          sizes="(max-width: 40em) 327px, (max-width: 80em) 214px, 251px"
           [src]="product().image.desktop"
           [alt]="product().name + ' showcase image'"
         />

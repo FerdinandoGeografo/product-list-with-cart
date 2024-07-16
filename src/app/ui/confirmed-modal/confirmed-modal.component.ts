@@ -43,7 +43,9 @@ import { modalTransitions } from '../../animations/modal-transitions';
                     </h3>
 
                     <div class="order__amount">
-                      <span class="text text--sm text--semibold text--red-100">
+                      <span
+                        class="text text--sm text--semibold text--red-100 order__quantity"
+                      >
                         {{ item.quantity }}x
                       </span>
                       <span class="text text--sm text--rose-500">
@@ -53,9 +55,11 @@ import { modalTransitions } from '../../animations/modal-transitions';
                   </div>
                 </div>
 
-                <span class="text text--md">
-                  {{ item.product.price * item.quantity | currency : '$' }}
-                </span>
+                <div class="order__subtotal">
+                  <span class="text text--md">
+                    {{ item.product.price * item.quantity | currency : '$' }}
+                  </span>
+                </div>
               </article>
             </li>
             }

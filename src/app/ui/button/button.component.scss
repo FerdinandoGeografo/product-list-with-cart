@@ -55,12 +55,12 @@
 
       &--remove {
         color: var(--rose-400);
-        box-shadow: inset 0 0 0 1.25px var(--rose-400);
+        box-shadow: inset 0 0 0 1px var(--rose-400);
 
         &:hover,
         &:focus {
           color: var(--rose-900);
-          box-shadow: inset 0 0 0 1.25px var(--rose-900);
+          box-shadow: inset 0 0 0 1px var(--rose-900);
         }
       }
     }
