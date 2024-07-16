@@ -21,7 +21,6 @@ const initialState: GlobalState = {
 export class GlobalStoreService {
   #http = inject(HttpClient);
   #store = signal<GlobalState>(initialState);
-  #logEffect = effect(() => console.log('State changed\t: ', this.#store()));
 
   // State
   products = computed(() => this.#store().products);
