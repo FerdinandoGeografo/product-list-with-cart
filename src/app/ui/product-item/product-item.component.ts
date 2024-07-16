@@ -1,5 +1,5 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { CurrencyPipe, NgClass } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
 
 import { Product } from '../../models/product.model';
 import { GlobalStoreService } from '../../data-access/global-store.service';
@@ -8,9 +8,9 @@ import { ButtonComponent } from '../button/button.component';
 @Component({
   selector: 'app-product-item',
   standalone: true,
-  imports: [CurrencyPipe, NgClass, ButtonComponent],
+  imports: [CurrencyPipe, ButtonComponent],
   template: `
-    <article class="product" [ngClass]="productNgClass()">
+    <article class="product" [class.product--added]="isAdded()">
       <div class="product__img-box">
         <img
           class="product__img"
@@ -99,7 +99,7 @@ import { ButtonComponent } from '../button/button.component';
         <p class="text text--sm text--rose-500">
           {{ product().category }}
         </p>
-        <h3 class="text text--md">{{ product().name }}</h3>
+        <h2 class="text text--md">{{ product().name }}</h2>
         <p class="text text--md text--red-100">
           {{ product().price | currency : '$' }}
         </p>
@@ -119,7 +119,4 @@ export class ProductItemComponent {
         ?.quantity || 0
   );
   protected isAdded = computed(() => this.quantity() > 0);
-  protected productNgClass = computed(() => ({
-    'product--added': this.isAdded(),
-  }));
 }

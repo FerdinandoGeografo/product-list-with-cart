@@ -38,9 +38,9 @@ import { modalTransitions } from '../../animations/modal-transitions';
                   />
 
                   <div class="order__text-box">
-                    <h3 class="text text--sm text--semibold order__item-name">
+                    <p class="text text--sm text--semibold order__item-name">
                       {{ item.product.name }}
-                    </h3>
+                    </p>
 
                     <div class="order__amount">
                       <span

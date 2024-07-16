@@ -60,13 +60,13 @@ import { ButtonComponent } from '../button/button.component';
           </div>
         </li>
         } @empty {
-        <div class="cart__empty">
+        <li class="cart__empty">
           <img src="images/illustration-empty-cart.svg" alt="Empty cart icon" />
 
           <p class="text text--sm text--semibold">
             Your added items will appear here
           </p>
-        </div>
+        </li>
         }
       </ul>
 

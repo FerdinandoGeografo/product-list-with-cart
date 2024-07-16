@@ -6,11 +6,9 @@ This is a solution to the [Product list with cart challenge on Frontend Mentor](
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
+  - [Screenshots](#screenshots)
   - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
+- [Built with](#built-with)
 - [Author](#author)
 
 ## Overview
@@ -28,27 +26,25 @@ Users should be able to:
 - View the optimal layout for the interface depending on their device's screen size
 - See hover and focus states for all interactive elements on the page
 
-### Screenshot
+### Screenshots
 
-![](./screenshot.jpg)
+![https://products-with-cart-fg.netlify.app/](./screenshot-empty.jpg)
+
+![https://products-with-cart-fg.netlify.app/](./screenshot-cart.jpg)
 
 ### Links
 
 - Solution URL: [https://github.com/FerdinandoGeografo/product-list-with-cart](https://github.com/FerdinandoGeografo/product-list-with-cart)
-- Live Site URL: [https://github.com/FerdinandoGeografo/product-list-with-cart](https://github.com/FerdinandoGeografo/product-list-with-cart)
+- Live Site URL: [https://products-with-cart-fg.netlify.app/](https://products-with-cart-fg.netlify.app/)
 
-## My process
-
-### Built with
+## Built with
 
 - Semantic HTML5 markup
 - SASS following 7-1 pattern and BEM conventions
 - Flexbox
 - CSS Grid
 - Desktop-first workflow
-- [Angular](https://angular.dev/) - JS Framework
-
-### What I learned
+- [Angular v18](https://angular.dev/) - JS Framework
 
 ## Author
 
